@@ -1,0 +1,10 @@
+{
+  "name": "pstack-codex",
+  "version": "0.15.27.0",
+  "description": "pstack engineering workflows adapted for Codex",
+  "author": { "name": "Lauren Tan and pstack-custom contributors" },
+  "homepage": "https://github.com/kaelkkd/pstack-custom",
+  "repository": "https://github.com/kaelkkd/pstack-custom",
+  "license": "MIT",
+  "skills": "./skills/"
+}

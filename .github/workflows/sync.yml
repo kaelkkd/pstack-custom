@@ -1,0 +1,74 @@
+name: Sync pstack upstream
+
+on:
+  schedule:
+    - cron: '17 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-pstack
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Continue open synchronization branch
+        shell: bash
+        run: |
+          if git ls-remote --exit-code --heads origin sync/pstack > /dev/null; then
+            git fetch origin sync/pstack
+            git switch -C sync/pstack FETCH_HEAD
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read only pstack from upstream
+        shell: bash
+        run: |
+          git clone --filter=blob:none --no-checkout --depth=1 https://github.com/cursor/plugins.git "$RUNNER_TEMP/cursor-plugins"
+          git -C "$RUNNER_TEMP/cursor-plugins" sparse-checkout init --cone
+          git -C "$RUNNER_TEMP/cursor-plugins" sparse-checkout set pstack
+          git -C "$RUNNER_TEMP/cursor-plugins" checkout main
+          echo "UPSTREAM_COMMIT=$(git -C "$RUNNER_TEMP/cursor-plugins" rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "PSTACK_TREE=$(git -C "$RUNNER_TEMP/cursor-plugins" rev-parse HEAD:pstack)" >> "$GITHUB_ENV"
+      - name: Synchronize snapshot and adapters
+        shell: bash
+        run: |
+          python scripts/pstack.py sync \
+            --source "$RUNNER_TEMP/cursor-plugins/pstack" \
+            --commit "$UPSTREAM_COMMIT" \
+            --tree "$PSTACK_TREE" \
+            --report "$RUNNER_TEMP/sync-report.md"
+          python scripts/pstack.py check --allow-pending
+      - name: Open or update synchronization PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if git diff --quiet && test -z "$(git ls-files --others --exclude-standard)"; then
+            echo "No pstack changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if test "$(git branch --show-current)" != sync/pstack; then
+            git switch -c sync/pstack
+          fi
+          git add -A
+          git commit -m "chore: sync pstack from ${UPSTREAM_COMMIT:0:12}"
+          git push origin HEAD:refs/heads/sync/pstack
+          if gh pr view sync/pstack --json number --jq .number > "$RUNNER_TEMP/pr-number" 2>/dev/null; then
+            gh pr edit "$(cat "$RUNNER_TEMP/pr-number")" --title "Sync pstack ${UPSTREAM_COMMIT:0:12}" --body-file "$RUNNER_TEMP/sync-report.md"
+          else
+            gh pr create --base main --head sync/pstack --title "Sync pstack ${UPSTREAM_COMMIT:0:12}" --body-file "$RUNNER_TEMP/sync-report.md"
+          fi
+          gh workflow run validate.yml --ref sync/pstack

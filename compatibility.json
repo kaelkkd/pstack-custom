@@ -1,0 +1,294 @@
+{
+  "entries": [
+    {
+      "source": "agents/comment-sicko.md",
+      "codex": "profile",
+      "pi": "profile"
+    },
+    {
+      "source": "agents/poteto-agent.md",
+      "codex": "profile",
+      "pi": "profile"
+    },
+    {
+      "source": "skills/architect/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/arena/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/automate-me/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/benchmark-checklist/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/blast-radius/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/bro/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/correct/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/create-formal-verification-skill/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/create-verification-skill/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/figure-it-out/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/how/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/in-your-own-words/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/interrogate/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/ketchup/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/maintain-verification-skill/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/make-bot-ui/SKILL.md",
+      "codex": "excluded: requires Cursor Automation routines, SendToUser secret requests, and Cursor webhooks",
+      "pi": "excluded: requires Cursor Automation routines, SendToUser secret requests, and Cursor webhooks"
+    },
+    {
+      "source": "skills/no-comments/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/poteto-help/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/poteto-mode/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-attack-the-premise/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-boundary-discipline/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-build-the-lever/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-encode-lessons-in-structure/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-exhaust-the-design-space/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-experience-first/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-explain-the-number/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-fix-root-causes/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-foundational-thinking/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-guard-the-context-window/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-laziness-protocol/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-make-operations-idempotent/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-minimize-reader-load/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-model-the-domain/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-never-block-on-the-human/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-outcome-oriented-execution/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-prove-it-works/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-redesign-from-first-principles/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-separate-before-serializing-shared-state/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-sequence-verifiable-units/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-subtract-before-you-add/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-test-behavior-not-implementation/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/principle-type-system-discipline/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/recall/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/reflect/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/setup-pstack/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/sharpen/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/show-me-your-work/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/swarm/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/tdd/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/teach/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/technical-writing/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/typescript-best-practices/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/unslop/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/why/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "automations/benny/",
+      "codex": "excluded: Cursor Automations and Slack integration are not part of the Codex plugin runtime",
+      "pi": "excluded: Cursor Automations and Slack integration are not part of the Pi package runtime"
+    }
+  ]
+}
