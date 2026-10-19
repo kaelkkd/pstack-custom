@@ -52,8 +52,8 @@
     },
     {
       "source": "skills/create-formal-verification-skill/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/create-verification-skill/SKILL.md",
@@ -87,8 +87,8 @@
     },
     {
       "source": "skills/maintain-formal-verification-skill/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/maintain-verification-skill/SKILL.md",
@@ -107,13 +107,8 @@
     },
     {
       "source": "skills/poteto-help/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
-    },
-    {
-      "source": "skills/poteto-help/references/recipes.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/poteto-mode/SKILL.md",

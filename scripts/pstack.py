@@ -186,7 +186,8 @@ def synchronize(source_dir: Path, commit: str, tree: str, report_path: Path) -> 
                 review.append(f"{platform}: semantic review {path}")
                 if path in by_source:
                     by_source[path][platform] = "review-required"
-        if path.startswith(("skills/", "agents/")) and path not in by_source:
+        if ((path.startswith("skills/") and path.endswith("/SKILL.md"))
+                or (path.startswith("agents/") and path.endswith(".md"))) and path not in by_source:
             item = {"source": path, "codex": "review-required", "pi": "review-required"}
             matrix["entries"].append(item)
             by_source[path] = item
