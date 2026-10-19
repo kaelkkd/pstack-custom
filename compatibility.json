@@ -11,6 +11,11 @@
       "pi": "profile"
     },
     {
+      "source": "automations/benny/",
+      "codex": "excluded: Cursor Automations and Slack integration are not part of the Codex plugin runtime",
+      "pi": "excluded: Cursor Automations and Slack integration are not part of the Pi package runtime"
+    },
+    {
       "source": "skills/architect/SKILL.md",
       "codex": "adapted",
       "pi": "adapted"
@@ -77,6 +82,11 @@
     },
     {
       "source": "skills/ketchup/SKILL.md",
+      "codex": "adapted",
+      "pi": "adapted"
+    },
+    {
+      "source": "skills/maintain-formal-verification-skill/SKILL.md",
       "codex": "adapted",
       "pi": "adapted"
     },
@@ -284,11 +294,6 @@
       "source": "skills/why/SKILL.md",
       "codex": "adapted",
       "pi": "adapted"
-    },
-    {
-      "source": "automations/benny/",
-      "codex": "excluded: Cursor Automations and Slack integration are not part of the Codex plugin runtime",
-      "pi": "excluded: Cursor Automations and Slack integration are not part of the Pi package runtime"
     }
   ]
 }

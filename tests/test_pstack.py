@@ -112,6 +112,17 @@ class SyncTests(unittest.TestCase):
         self.write(self.root / "codex" / "docs" / "guide" / "example.md", "[Broken](../../skills/other/SKILL.md)\n")
         self.assertEqual(pstack.check(allow_pending=True), 1)
 
+    def test_changed_skill_reference_does_not_become_matrix_entry(self):
+        self.write(pstack.UPSTREAM / "skills" / "example" / "references" / "recipe.md", "Old recipe\n")
+        for platform in pstack.TARGETS:
+            self.write(self.root / platform / "skills" / "example" / "references" / "recipe.md", "Old recipe\n")
+        source = self.new_source()
+        self.write(source / "skills" / "example" / "references" / "recipe.md", "New recipe\n")
+        report = self.sync(source)
+        self.assertIn("semantic review skills/example/references/recipe.md", report)
+        entries = json.loads(pstack.MATRIX.read_text(encoding="utf-8"))["entries"]
+        self.assertNotIn("skills/example/references/recipe.md", {item["source"] for item in entries})
+
     def test_later_sync_keeps_unresolved_review_items(self):
         source = self.new_source()
         self.write(source / "docs" / "guide" / "new.md", "# New\n")
