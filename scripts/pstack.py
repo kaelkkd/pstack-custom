@@ -227,7 +227,8 @@ def check(allow_pending: bool = False) -> int:
     if (ROOT / "LICENSE").read_bytes() != (UPSTREAM / "LICENSE").read_bytes():
         problems.append("upstream license missing at repository root")
     matrix = json.loads(MATRIX.read_text(encoding="utf-8"))
-    if PENDING.exists() and json.loads(PENDING.read_text(encoding="utf-8"))["items"] and not allow_pending:
+    pending_items = set(json.loads(PENDING.read_text(encoding="utf-8"))["items"]) if PENDING.exists() else set()
+    if pending_items and not allow_pending:
         problems.append("sync-pending.json still contains review items")
     entries = {item["source"]: item for item in matrix["entries"]}
     expected = {
@@ -270,7 +271,14 @@ def check(allow_pending: bool = False) -> int:
                 href = match.group(1).split("#", 1)[0].split("?", 1)[0]
                 if not href or href == "url" or href.startswith(("/", "mailto:")) or "://" in href:
                     continue
-                if not (markdown.parent / href).exists():
+                target = (markdown.parent / href).resolve()
+                if not target.exists():
+                    try:
+                        relative_target = target.relative_to(package.resolve()).as_posix()
+                    except ValueError:
+                        relative_target = ""
+                    if allow_pending and f"{platform}: new {relative_target}" in pending_items:
+                        continue
                     problems.append(f"broken link in {markdown.relative_to(ROOT)}: {href}")
         if any((package / "skills").rglob("make-bot-ui/SKILL.md")):
             problems.append(f"Cursor-only make-bot-ui installed in {platform}")

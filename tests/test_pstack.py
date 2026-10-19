@@ -23,6 +23,7 @@ class SyncTests(unittest.TestCase):
         pstack.PENDING = self.root / "sync-pending.json"
         self.write(pstack.UPSTREAM / "skills" / "example" / "SKILL.md", "---\nname: example\ndescription: Test\n---\n\n# Example\nOld line.\n")
         self.write(pstack.UPSTREAM / "agents" / "worker.md", "---\nname: worker\n---\n\n# Worker\n")
+        self.write(pstack.UPSTREAM / "docs" / "guide" / "example.md", "# Guide\n")
         self.write(pstack.UPSTREAM / "LICENSE", "MIT fixture\n")
         self.write(self.root / "LICENSE", "MIT fixture\n")
         self.write(pstack.LOCK, json.dumps({"repository": "https://github.com/cursor/plugins", "commit": "a" * 40, "tree": "b" * 40}))
@@ -94,6 +95,22 @@ class SyncTests(unittest.TestCase):
         self.assertFalse((self.root / "codex" / "skills" / "added").exists())
         self.assertEqual(pstack.check(allow_pending=True), 0)
         self.assertEqual(pstack.check(), 1)
+
+    def test_new_skill_links_wait_for_review(self):
+        source = self.new_source()
+        self.write(source / "skills" / "added" / "SKILL.md", "---\nname: added\ndescription: Test\n---\n\n# Added\n")
+        self.write(source / "docs" / "guide" / "example.md", "[New skill](../../skills/added/SKILL.md)\n")
+        report = self.sync(source)
+        self.assertIn("codex: new skills/added/SKILL.md", report)
+        self.assertEqual(pstack.check(allow_pending=True), 0)
+        self.assertEqual(pstack.check(), 1)
+
+    def test_unrelated_broken_link_still_fails_with_pending(self):
+        source = self.new_source()
+        self.write(source / "skills" / "added" / "SKILL.md", "---\nname: added\ndescription: Test\n---\n\n# Added\n")
+        self.sync(source)
+        self.write(self.root / "codex" / "docs" / "guide" / "example.md", "[Broken](../../skills/other/SKILL.md)\n")
+        self.assertEqual(pstack.check(allow_pending=True), 1)
 
     def test_later_sync_keeps_unresolved_review_items(self):
         source = self.new_source()
