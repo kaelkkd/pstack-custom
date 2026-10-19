@@ -2,7 +2,7 @@ name: Sync pstack upstream
 
 on:
   schedule:
-    - cron: '17 12 * * *'
+    - cron: '0 23 * * *' # 20:00 GMT-3
   workflow_dispatch:
 
 permissions:
