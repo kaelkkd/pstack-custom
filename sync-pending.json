@@ -1,3 +1,12 @@
 {
-  "items": []
+  "items": [
+    "codex: merge conflict skills/poteto-help/SKILL.md",
+    "codex: semantic review skills/poteto-help/SKILL.md",
+    "codex: semantic review skills/poteto-help/references/recipes.md",
+    "codex: semantic review skills/sharpen/SKILL.md",
+    "pi: merge conflict skills/poteto-help/SKILL.md",
+    "pi: semantic review skills/poteto-help/SKILL.md",
+    "pi: semantic review skills/poteto-help/references/recipes.md",
+    "pi: semantic review skills/sharpen/SKILL.md"
+  ]
 }

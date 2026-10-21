@@ -107,8 +107,8 @@
     },
     {
       "source": "skills/poteto-help/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/poteto-mode/SKILL.md",
@@ -252,8 +252,8 @@
     },
     {
       "source": "skills/sharpen/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/show-me-your-work/SKILL.md",
