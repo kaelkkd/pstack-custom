@@ -27,6 +27,9 @@ jobs:
           if git ls-remote --exit-code --heads origin sync/pstack > /dev/null; then
             git fetch origin sync/pstack
             git switch -C sync/pstack FETCH_HEAD
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git merge --no-edit origin/main
           fi
       - uses: actions/setup-python@v5
         with:
@@ -54,21 +57,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          if git diff --quiet && test -z "$(git ls-files --others --exclude-standard)"; then
-            echo "No pstack changes"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if test "$(git branch --show-current)" != sync/pstack; then
-            git switch -c sync/pstack
-          fi
-          git add -A
-          git commit -m "chore: sync pstack from ${UPSTREAM_COMMIT:0:12}"
-          git push origin HEAD:refs/heads/sync/pstack
-          if gh pr view sync/pstack --json number --jq .number > "$RUNNER_TEMP/pr-number" 2>/dev/null; then
-            gh pr edit "$(cat "$RUNNER_TEMP/pr-number")" --title "Sync pstack ${UPSTREAM_COMMIT:0:12}" --body-file "$RUNNER_TEMP/sync-report.md"
-          else
-            gh pr create --base main --head sync/pstack --title "Sync pstack ${UPSTREAM_COMMIT:0:12}" --body-file "$RUNNER_TEMP/sync-report.md"
-          fi
-          gh workflow run validate.yml --ref sync/pstack
+          python scripts/publish_sync_pr.py \
+            --report "$RUNNER_TEMP/sync-report.md" \
+            --commit "$UPSTREAM_COMMIT"

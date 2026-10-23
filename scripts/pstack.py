@@ -256,6 +256,13 @@ def check(allow_pending: bool = False) -> int:
                 continue
             if not target.is_file() and status != "review-required":
                 problems.append(f"missing {platform}/{path}")
+            if path.endswith("/SKILL.md") and status == "adapted":
+                prefix = path.removesuffix("SKILL.md")
+                for resource in source:
+                    if resource != path and resource.startswith(prefix) and not (package / resource).is_file():
+                        if allow_pending and f"{platform}: new {resource}" in pending_items:
+                            continue
+                        problems.append(f"missing skill resource {platform}/{resource}")
             if path.endswith("/SKILL.md") and target.is_file():
                 text = target.read_text(encoding="utf-8")
                 name = Path(path).parent.name

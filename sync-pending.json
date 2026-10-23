@@ -1,36 +1,3 @@
 {
-  "items": [
-    "codex: merge conflict skills/poteto-help/SKILL.md",
-    "codex: new skills/statechart/SKILL.md",
-    "codex: new skills/statechart/scripts/chart-to-tla.mjs",
-    "codex: new skills/statechart/scripts/compare-charts.mjs",
-    "codex: new skills/statechart/scripts/lib.mjs",
-    "codex: new skills/statechart/scripts/model/OutputFolder.cfg",
-    "codex: new skills/statechart/scripts/model/OutputFolder.map.mjs",
-    "codex: new skills/statechart/scripts/model/OutputFolder.tla",
-    "codex: new skills/statechart/scripts/statechart.mjs",
-    "codex: new skills/statechart/scripts/test/statechart.test.mjs",
-    "codex: new skills/statechart/scripts/test/sync.mmd",
-    "codex: new skills/statechart/scripts/test/upload.mmd",
-    "codex: new skills/statechart/scripts/tlc-to-chart.mjs",
-    "codex: semantic review skills/poteto-help/SKILL.md",
-    "codex: semantic review skills/poteto-help/references/recipes.md",
-    "codex: semantic review skills/sharpen/SKILL.md",
-    "pi: merge conflict skills/poteto-help/SKILL.md",
-    "pi: new skills/statechart/SKILL.md",
-    "pi: new skills/statechart/scripts/chart-to-tla.mjs",
-    "pi: new skills/statechart/scripts/compare-charts.mjs",
-    "pi: new skills/statechart/scripts/lib.mjs",
-    "pi: new skills/statechart/scripts/model/OutputFolder.cfg",
-    "pi: new skills/statechart/scripts/model/OutputFolder.map.mjs",
-    "pi: new skills/statechart/scripts/model/OutputFolder.tla",
-    "pi: new skills/statechart/scripts/statechart.mjs",
-    "pi: new skills/statechart/scripts/test/statechart.test.mjs",
-    "pi: new skills/statechart/scripts/test/sync.mmd",
-    "pi: new skills/statechart/scripts/test/upload.mmd",
-    "pi: new skills/statechart/scripts/tlc-to-chart.mjs",
-    "pi: semantic review skills/poteto-help/SKILL.md",
-    "pi: semantic review skills/poteto-help/references/recipes.md",
-    "pi: semantic review skills/sharpen/SKILL.md"
-  ]
+  "items": []
 }

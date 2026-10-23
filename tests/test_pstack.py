@@ -136,6 +136,14 @@ class SyncTests(unittest.TestCase):
         self.assertTrue(set(original_items).issubset(items))
         self.assertIn("codex: semantic review skills/example/SKILL.md", items)
 
+    def test_adapted_skill_requires_its_resources(self):
+        resource = Path("skills/example/scripts/run.mjs")
+        self.write(pstack.UPSTREAM / resource, "console.log('example');\n")
+        self.assertEqual(pstack.check(), 1)
+        for platform in pstack.TARGETS:
+            self.write(self.root / platform / resource, "console.log('example');\n")
+        self.assertEqual(pstack.check(), 0)
+
 
 if __name__ == "__main__":
     unittest.main()
