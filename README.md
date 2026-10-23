@@ -20,13 +20,15 @@ Read [the Pi adapter](pi/docs/adapter.md) before using the upstream prose. Deleg
 
 ## Compatibility
 
-Both ports include 54 upstream skills and two agent profiles. `make-bot-ui` is excluded because its only workflow requires Cursor Automation routines, Cursor secret requests, and Cursor webhooks. The dormant `benny` automation pack remains in the source snapshot but is excluded from both installed packages. Optional steps invoking Bugbot, Cursor cloud dashboards, or skills from the separate `cursor-team-kit` plugin are mapped or reported unavailable by the adapters. No external service is installed implicitly.
+Both ports include 56 upstream skills and two agent profiles. `make-bot-ui` is excluded because its only workflow requires Cursor Automation routines, Cursor secret requests, and Cursor webhooks. The dormant `benny` automation pack remains in the source snapshot but is excluded from both installed packages. Optional steps invoking Bugbot, Cursor cloud dashboards, or skills from the separate `cursor-team-kit` plugin are mapped or reported unavailable by the adapters. No external service is installed implicitly.
 
 The adapters are interpretation layers, not claims that every upstream workflow can run unchanged. Review source changes before merging a sync PR, especially agent and model instructions.
 
+The `statechart` skill requires Node.js, Java 11 or later, and `tla2tools.jar` configured through `TLA2TOOLS`. PNG rendering also uses Mermaid CLI through `npx`. These tools are checked when the commands run; they are not installed by the plugin.
+
 ## Update from upstream
 
-The scheduled workflow checks once daily and can be started with **Run workflow**. It compares the `pstack/` tree hash, so unrelated commits in `cursor/plugins` do nothing. When the tree changes, it updates only `upstream/pstack/`, merges safe text changes into the ports, and opens or updates one `sync/pstack` PR. New or removed skills, merge conflicts, and semantic changes appear in the PR report and `sync-pending.json`. The sync never merges its PR.
+The scheduled workflow checks once daily and can be started with **Run workflow**. It compares the `pstack/` tree hash, so unrelated commits in `cursor/plugins` do nothing. When the tree changes, it updates only `upstream/pstack/`, merges safe text changes into the ports, and opens or updates one `sync/pstack` PR. New or removed skills, merge conflicts, and semantic changes appear in the PR report and `sync-pending.json`. Only an open PR is reused; after a previous PR is merged or closed, the next sync opens a new one. A later run also recovers a missing PR when the upstream tree has not changed. The sync never merges its PR.
 
 To run manually from a local checkout of `cursor/plugins`:
 
