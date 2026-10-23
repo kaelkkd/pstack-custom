@@ -261,6 +261,11 @@
       "pi": "adapted"
     },
     {
+      "source": "skills/statechart/SKILL.md",
+      "codex": "review-required",
+      "pi": "review-required"
+    },
+    {
       "source": "skills/swarm/SKILL.md",
       "codex": "adapted",
       "pi": "adapted"
