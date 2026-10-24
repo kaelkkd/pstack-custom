@@ -52,8 +52,8 @@
     },
     {
       "source": "skills/create-formal-verification-skill/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/create-verification-skill/SKILL.md",
@@ -79,6 +79,11 @@
       "source": "skills/interrogate/SKILL.md",
       "codex": "adapted",
       "pi": "adapted"
+    },
+    {
+      "source": "skills/ketchup-video/SKILL.md",
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/ketchup/SKILL.md",
@@ -107,8 +112,8 @@
     },
     {
       "source": "skills/poteto-help/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/poteto-mode/SKILL.md",
@@ -242,8 +247,8 @@
     },
     {
       "source": "skills/reflect/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/setup-pstack/SKILL.md",
@@ -262,13 +267,13 @@
     },
     {
       "source": "skills/statechart/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/swarm/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/tdd/SKILL.md",
