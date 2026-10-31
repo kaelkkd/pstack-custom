@@ -2,6 +2,7 @@ import importlib.util
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -95,6 +96,29 @@ class SyncTests(unittest.TestCase):
         self.assertFalse((self.root / "codex" / "skills" / "added").exists())
         self.assertEqual(pstack.check(allow_pending=True), 0)
         self.assertEqual(pstack.check(), 1)
+
+    def test_multiple_conflicts_are_reported_without_aborting_sync(self):
+        skill = Path("skills/example/SKILL.md")
+        base = "---\nname: example\ndescription: Test\n---\n\n" + "".join(f"line {i}\n" for i in range(40))
+        self.write(pstack.UPSTREAM / skill, base)
+        pstack.copy_initial()
+        source = self.new_source()
+        self.write(source / skill, base.replace("line 2\n", "upstream first\n").replace("line 30\n", "upstream second\n"))
+        target = self.root / "codex" / skill
+        local = target.read_text().replace("line 2\n", "local first\n").replace("line 30\n", "local second\n")
+        self.write(target, local)
+        report = self.sync(source)
+        self.assertIn("codex: merge conflict skills/example/SKILL.md", report)
+        self.assertEqual(target.read_text(), local)
+        self.assertEqual((pstack.UPSTREAM / skill).read_bytes(), (source / skill).read_bytes())
+        self.assertEqual(json.loads(pstack.LOCK.read_text())["tree"], "c" * 40)
+        self.assertEqual(pstack.check(allow_pending=True), 0)
+
+    def test_merge_execution_error_includes_exit_code(self):
+        result = pstack.subprocess.CompletedProcess([], 128, stdout=b"", stderr=b"")
+        with patch.object(pstack.subprocess, "run", return_value=result):
+            with self.assertRaisesRegex(RuntimeError, "exit code 128"):
+                pstack.merge_text(b"base", b"ours", b"theirs")
 
     def test_new_skill_links_wait_for_review(self):
         source = self.new_source()
