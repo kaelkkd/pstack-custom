@@ -22,8 +22,8 @@
     },
     {
       "source": "skills/arena/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/automate-me/SKILL.md",
@@ -77,8 +77,8 @@
     },
     {
       "source": "skills/interrogate/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/ketchup-video/SKILL.md",
@@ -117,8 +117,8 @@
     },
     {
       "source": "skills/poteto-mode/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/principle-attack-the-premise/SKILL.md",
@@ -152,8 +152,8 @@
     },
     {
       "source": "skills/principle-explain-the-number/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/principle-fix-root-causes/SKILL.md",
@@ -252,8 +252,8 @@
     },
     {
       "source": "skills/setup-pstack/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/sharpen/SKILL.md",
