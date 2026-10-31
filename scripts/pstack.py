@@ -136,9 +136,11 @@ def merge_text(base: bytes, ours: bytes, theirs: bytes) -> bytes | None:
         )
         if result.returncode == 0:
             return result.stdout
-        if result.returncode == 1:
+        # merge-file returns the conflict count (capped at 127), not just 1.
+        if 1 <= result.returncode <= 127:
             return None
-        raise RuntimeError(result.stderr.decode("utf-8", errors="replace"))
+        detail = result.stderr.decode("utf-8", errors="replace").strip()
+        raise RuntimeError(f"git merge-file failed with exit code {result.returncode}: {detail or 'no diagnostic output'}")
 
 
 def synchronize(source_dir: Path, commit: str, tree: str, report_path: Path) -> int:
