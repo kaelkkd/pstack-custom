@@ -35,3 +35,9 @@ Ignore hard-coded Cursor, Claude, Grok, and GPT model slugs in pstack. Use the a
 Cursor Automations, Bugbot launch/configuration, Cursor cloud agent dashboards, and Cursor's built-in PR tool have no direct Codex equivalent in this package. For GitHub PR operations, use `gh` or the available GitHub connector. Existing Bugbot comments can be reviewed as ordinary PR feedback. When a step is unavailable, say which step was skipped and continue only if its output is not required later. Do not silently claim it ran.
 
 The upstream `deslop`, `control-cli`, and `control-ui` skills belong to `cursor-team-kit`, outside pstack. Use an independently installed equivalent only when one is present; otherwise report that dependency as unavailable. Do not install `cursor-team-kit` implicitly.
+
+## Review panels and artifacts
+
+A different process is not evidence of a different model family. Arena cross-judges run only when another available family is explicitly configured; otherwise skip that cross-judge and disclose the limitation.
+
+Statechart uses the bundled TypeScript entry point with a supported Node.js runtime. Configure `TLA2TOOLS` and `JAVA` to reuse existing tools; the upstream mise fallback needs network access. Follow the bundled rendering reference for SVG output. For `ketchup-video`, use a locally available video renderer. If the client cannot embed video, return the artifact path and keep action items in text.

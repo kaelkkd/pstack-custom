@@ -22,8 +22,8 @@
     },
     {
       "source": "skills/arena/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/automate-me/SKILL.md",
@@ -52,8 +52,8 @@
     },
     {
       "source": "skills/create-formal-verification-skill/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/create-verification-skill/SKILL.md",
@@ -77,13 +77,13 @@
     },
     {
       "source": "skills/interrogate/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/ketchup-video/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/ketchup/SKILL.md",
@@ -112,13 +112,13 @@
     },
     {
       "source": "skills/poteto-help/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/poteto-mode/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-attack-the-premise/SKILL.md",
@@ -152,8 +152,8 @@
     },
     {
       "source": "skills/principle-explain-the-number/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-fix-root-causes/SKILL.md",
@@ -247,13 +247,13 @@
     },
     {
       "source": "skills/reflect/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/setup-pstack/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/sharpen/SKILL.md",
@@ -267,13 +267,13 @@
     },
     {
       "source": "skills/statechart/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/swarm/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/tdd/SKILL.md",

@@ -15,10 +15,10 @@ The chart shows how a system moves between states, in the words of the person wh
 Work in a scratch folder outside the repo. Write a TLA+ spec and its config. Then run:
 
 ```sh
-<skill dir>/scripts/statechart SPEC.tla [--config FILE] [--view FILE] [--out DIR]
+node --disable-warning=ExperimentalWarning "<skill dir>/scripts/statechart.ts" SPEC.tla [--config FILE] [--view FILE] [--out DIR]
 ```
 
-`scripts/statechart.ts` is TypeScript, so run it with a runtime that can execute TypeScript.
+Use Node.js 22.18 or later in the 22.x line, or Node.js 23.6 or later. The command works on Windows, macOS, and Linux.
 
 The first run installs TLC and Java with mise and needs the network.
 

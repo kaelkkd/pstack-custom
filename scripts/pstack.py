@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -37,11 +38,14 @@ AGENT_LINE = (
 
 
 def files(root: Path) -> dict[str, Path]:
-    return {
-        p.relative_to(root).as_posix(): p
-        for p in root.rglob("*")
-        if p.is_file() and "node_modules" not in p.parts
-    }
+    result = {}
+    for directory, children, names in os.walk(root):
+        children[:] = [name for name in children if name != "node_modules"]
+        for name in names:
+            path = Path(directory) / name
+            if path.is_file():
+                result[path.relative_to(root).as_posix()] = path
+    return result
 
 
 def supported(path: str) -> bool:
@@ -64,6 +68,13 @@ def insert_after_frontmatter(source: str, line: str) -> str:
 def render(path: str, data: bytes, platform: str) -> bytes:
     if path.startswith("skills/") and path.endswith("/SKILL.md"):
         text = data.decode("utf-8").replace("\r\n", "\n")
+        if platform == "codex" and path in {"skills/statechart/SKILL.md", "skills/ketchup-video/SKILL.md"}:
+            text = text.replace("disable-model-invocation: true\n", "")
+        if path == "skills/statechart/SKILL.md":
+            text = text.replace("<skill dir>/scripts/statechart SPEC.tla", 'node --disable-warning=ExperimentalWarning "<skill dir>/scripts/statechart.ts" SPEC.tla')
+            text = text.replace("`scripts/statechart.ts` is TypeScript, so run it with a runtime that can execute TypeScript.", "Use Node.js 22.18 or later in the 22.x line, or Node.js 23.6 or later. The command works on Windows, macOS, and Linux.")
+        if path == "skills/reflect/SKILL.md":
+            text = text.replace("`.cursor/skills/<skill>/` or `~/.cursor/skills/<skill>/`", "the project or user skill directory described in the platform adapter")
         if path == "skills/poteto-help/SKILL.md":
             text = text.replace("../../docs/harness/claude-code.md", "../../docs/adapter.md")
             text = "\n".join(line for line in text.split("\n") if "../make-bot-ui/SKILL.md" not in line)
@@ -276,12 +287,17 @@ def check(allow_pending: bool = False) -> int:
             problems.append(f"missing {platform} adapter")
         if (package / "LICENSE").read_bytes() != (UPSTREAM / "LICENSE").read_bytes():
             problems.append(f"license mismatch in {platform}")
-        for markdown in package.rglob("*.md"):
+        for markdown in files(package).values():
+            if markdown.suffix != ".md":
+                continue
             for match in LINK.finditer(markdown.read_text(encoding="utf-8")):
                 href = match.group(1).split("#", 1)[0].split("?", 1)[0]
                 if not href or href == "url" or href.startswith(("/", "mailto:")) or "://" in href:
                     continue
                 target = (markdown.parent / href).resolve()
+                if not target.is_relative_to(package.resolve()):
+                    problems.append(f"link escapes installed package in {markdown.relative_to(ROOT)}: {href}")
+                    continue
                 if not target.exists():
                     try:
                         relative_target = target.relative_to(package.resolve()).as_posix()
@@ -290,7 +306,7 @@ def check(allow_pending: bool = False) -> int:
                     if allow_pending and f"{platform}: new {relative_target}" in pending_items:
                         continue
                     problems.append(f"broken link in {markdown.relative_to(ROOT)}: {href}")
-        if any((package / "skills").rglob("make-bot-ui/SKILL.md")):
+        if (package / "skills" / "make-bot-ui" / "SKILL.md").is_file():
             problems.append(f"Cursor-only make-bot-ui installed in {platform}")
     codex_manifest = json.loads((ROOT / "codex" / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
     pi_manifest = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))

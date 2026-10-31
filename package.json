@@ -1,15 +1,23 @@
 {
   "name": "pstack-pi",
-  "version": "0.15.27.0",
+  "version": "0.15.36",
   "private": false,
   "type": "module",
   "license": "MIT",
   "description": "pstack engineering workflows adapted for Pi",
   "repository": "https://github.com/kaelkkd/pstack-custom",
-  "keywords": ["pi-package", "pstack", "skills"],
+  "keywords": [
+    "pi-package",
+    "pstack",
+    "skills"
+  ],
   "pi": {
-    "skills": ["./pi/skills"],
-    "extensions": ["./pi/extensions/pstack-task.js"]
+    "skills": [
+      "./pi/skills"
+    ],
+    "extensions": [
+      "./pi/extensions/pstack-task.js"
+    ]
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",

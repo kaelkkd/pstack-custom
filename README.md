@@ -20,11 +20,11 @@ Read [the Pi adapter](pi/docs/adapter.md) before using the upstream prose. Deleg
 
 ## Compatibility
 
-Both ports include 56 upstream skills and two agent profiles. `make-bot-ui` is excluded because its only workflow requires Cursor Automation routines, Cursor secret requests, and Cursor webhooks. The dormant `benny` automation pack remains in the source snapshot but is excluded from both installed packages. Optional steps invoking Bugbot, Cursor cloud dashboards, or skills from the separate `cursor-team-kit` plugin are mapped or reported unavailable by the adapters. No external service is installed implicitly.
+Both ports include 57 upstream skills and two agent profiles. `make-bot-ui` is excluded because its only workflow requires Cursor Automation routines, Cursor secret requests, and Cursor webhooks. The dormant `benny` automation pack remains in the source snapshot but is excluded from both installed packages. Optional steps invoking Bugbot, Cursor cloud dashboards, or skills from the separate `cursor-team-kit` plugin are mapped or reported unavailable by the adapters. No external service is installed implicitly.
 
 The adapters are interpretation layers, not claims that every upstream workflow can run unchanged. Review source changes before merging a sync PR, especially agent and model instructions.
 
-The `statechart` skill requires Node.js, Java 11 or later, and `tla2tools.jar` configured through `TLA2TOOLS`. PNG rendering also uses Mermaid CLI through `npx`. These tools are checked when the commands run; they are not installed by the plugin.
+The `statechart` skill uses Node.js 22.18+ in the 22.x line or Node.js 23.6+, Java 11+, and TLA+ 1.7.4. Set `TLA2TOOLS` and optionally `JAVA` to use existing installations; without them the upstream mise fallback downloads its tools on first use. Charts render as SVG with Pele 1.9.0 through the bundled rendering reference. `ketchup-video` uses an available local video renderer such as FFmpeg; Pi returns the file path for external playback.
 
 ## Update from upstream
 

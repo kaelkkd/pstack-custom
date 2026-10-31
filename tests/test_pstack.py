@@ -168,6 +168,17 @@ class SyncTests(unittest.TestCase):
             self.write(self.root / platform / resource, "console.log('example');\n")
         self.assertEqual(pstack.check(), 0)
 
+    def test_links_cannot_depend_on_files_outside_the_installed_package(self):
+        self.write(self.root / "README.md", "Repository readme\n")
+        self.write(self.root / "codex" / "README.md", "[Repository](../README.md)\n")
+        self.assertEqual(pstack.check(), 1)
+        self.write(self.root / "codex" / "README.md", "[Repository](https://example.com/readme)\n")
+        self.assertEqual(pstack.check(), 0)
+
+    def test_installed_dev_dependencies_are_not_part_of_the_skill_package(self):
+        self.write(self.root / "codex" / "node_modules" / "example" / "README.md", "[Missing](missing.md)\n")
+        self.assertEqual(pstack.check(), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

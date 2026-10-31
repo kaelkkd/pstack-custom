@@ -469,7 +469,8 @@ describe("context and stack discovery", () => {
     expect(JSON.parse(child.stdout).map((item: { number: number }) => item.number)).toEqual([42]);
   });
 
-  it("requests and parses fork identity from gh before stack discovery", () => {
+  // This integration fixture is an executable POSIX shell script.
+  it.skipIf(process.platform === "win32")("requests and parses fork identity from gh before stack discovery", () => {
     const directory = mkdtempSync(join(tmpdir(), "watch-pr-fork-"));
     try {
       writeFileSync(join(directory, "gh"), `#!/bin/sh
