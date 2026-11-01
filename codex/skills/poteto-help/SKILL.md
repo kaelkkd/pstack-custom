@@ -13,7 +13,8 @@ Read the [Codex adapter](../../docs/adapter.md). Answer a help question without 
 - Understand code: `how`, `why`, and `teach`. Design and implementation: `architect`, `tdd`, `figure-it-out`. Review and cleanup: `interrogate`, `unslop`, `technical-writing`, and `no-comments`.
 - Formal verification: use [`create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) to create a check for a property. After covered code changes, use [`maintain-formal-verification-skill`](../maintain-formal-verification-skill/SKILL.md) to bring the check back in line and distinguish drift from a code bug.
 - Before sending a task, use [`sharpen`](../sharpen/SKILL.md) to rewrite its prompt with an expert's sources, methods, and an outside check. It returns the prompt without executing it.
-- Use [`statechart`](../statechart/SKILL.md) to show user-visible behavior and bug paths from a TLA+ model, generate a model from an agreed chart, or audit code against its existing spec.
+- Use [`statechart`](../statechart/SKILL.md) to check a TLA+ model, draw its states and shortest bug paths, and render its chart as SVG.
+- Use [`ketchup-video`](../ketchup-video/SKILL.md) for a recap as subtitled slides. It needs an available local video renderer; use [`ketchup`](../ketchup/SKILL.md) for a text recap.
 - Use the bundled [guide](../../docs/guide/01-setup.md) and read the relevant skill before giving detailed advice. Link the bundled file in the answer.
 - `make-bot-ui` and Benny automations are excluded; their reasons are recorded in the repository compatibility matrix. Cursor-only steps may be unavailable; check the adapter for their replacements.
 

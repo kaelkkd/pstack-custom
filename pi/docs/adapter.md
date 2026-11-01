@@ -35,3 +35,9 @@ Ignore model slugs in upstream pstack. The default is the active Pi model and th
 Cursor Automations, Bugbot launch/configuration, Cursor cloud agent dashboards, and Cursor's built-in PR tool are not supplied by this package. Use `gh` for PR operations when installed. Existing Bugbot comments are ordinary PR feedback. Name any skipped step; do not claim it ran.
 
 The upstream `deslop`, `control-cli`, and `control-ui` skills belong to `cursor-team-kit`, outside pstack. Use a separately installed equivalent only when available. Do not install that plugin implicitly.
+
+## Review panels and artifacts
+
+A different process is not evidence of a different model family. Arena cross-judges run only when another available family is explicitly configured; otherwise skip that cross-judge and disclose the limitation.
+
+Statechart uses the bundled TypeScript entry point with a supported Node.js runtime. Configure `TLA2TOOLS` and `JAVA` to reuse existing tools; the upstream mise fallback needs network access. Follow the bundled rendering reference for SVG output. For `ketchup-video`, use a locally available video renderer. If the client cannot embed video, return the artifact path and keep action items in text.
