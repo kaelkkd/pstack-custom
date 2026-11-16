@@ -2,8 +2,8 @@
   "entries": [
     {
       "source": "agents/comment-sicko.md",
-      "codex": "profile",
-      "pi": "profile"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "agents/poteto-agent.md",
@@ -17,13 +17,13 @@
     },
     {
       "source": "skills/architect/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/arena/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/automate-me/SKILL.md",
@@ -37,8 +37,8 @@
     },
     {
       "source": "skills/blast-radius/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/bro/SKILL.md",
@@ -67,8 +67,8 @@
     },
     {
       "source": "skills/how/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/in-your-own-words/SKILL.md",
@@ -107,18 +107,18 @@
     },
     {
       "source": "skills/no-comments/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/poteto-help/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/poteto-mode/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/principle-attack-the-premise/SKILL.md",
@@ -242,23 +242,23 @@
     },
     {
       "source": "skills/recall/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/reflect/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/setup-pstack/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/sharpen/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/show-me-your-work/SKILL.md",
@@ -272,8 +272,8 @@
     },
     {
       "source": "skills/swarm/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/tdd/SKILL.md",
@@ -282,8 +282,8 @@
     },
     {
       "source": "skills/teach/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     },
     {
       "source": "skills/technical-writing/SKILL.md",
@@ -302,8 +302,8 @@
     },
     {
       "source": "skills/why/SKILL.md",
-      "codex": "adapted",
-      "pi": "adapted"
+      "codex": "review-required",
+      "pi": "review-required"
     }
   ]
 }
