@@ -58,6 +58,16 @@ class SyncTests(unittest.TestCase):
         pstack.synchronize(source, "d" * 40, tree, report)
         return report.read_text(encoding="utf-8")
 
+    def test_worker_and_agent_render_preserve_host_defaults(self):
+        for platform in pstack.TARGETS:
+            agent = pstack.render("agents/poteto-agent.md", b"---\nname: poteto-agent\nmodel: cursor-only\n---\nBody\n", platform).decode()
+            self.assertNotIn("model: cursor-only", agent)
+            self.assertIn("adapter", agent)
+            worker = pstack.render("skills/poteto-mode/worker.md", b"Worker rules\n", platform).decode()
+            self.assertIn("../../docs/adapter.md", worker)
+            self.assertIn("explicit permissions take precedence", worker)
+            self.assertIn("Worker rules", worker)
+
     def test_unrelated_commit_does_not_update(self):
         source = self.new_source()
         report = self.sync(source, "b" * 40)

@@ -2,13 +2,13 @@
   "entries": [
     {
       "source": "agents/comment-sicko.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "profile",
+      "pi": "profile"
     },
     {
       "source": "agents/poteto-agent.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "profile",
+      "pi": "profile"
     },
     {
       "source": "automations/benny/",
@@ -17,28 +17,28 @@
     },
     {
       "source": "skills/architect/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/arena/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/automate-me/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/benchmark-checklist/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/blast-radius/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/bro/SKILL.md",
@@ -62,13 +62,13 @@
     },
     {
       "source": "skills/figure-it-out/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/how/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/in-your-own-words/SKILL.md",
@@ -107,33 +107,33 @@
     },
     {
       "source": "skills/no-comments/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/poteto-help/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/poteto-mode/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-attack-the-premise/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-boundary-discipline/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-build-the-lever/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-encode-lessons-in-structure/SKILL.md",
@@ -152,18 +152,18 @@
     },
     {
       "source": "skills/principle-explain-the-number/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-fix-root-causes/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-foundational-thinking/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-guard-the-context-window/SKILL.md",
@@ -177,8 +177,8 @@
     },
     {
       "source": "skills/principle-make-operations-idempotent/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
@@ -187,13 +187,13 @@
     },
     {
       "source": "skills/principle-minimize-reader-load/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-model-the-domain/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-never-block-on-the-human/SKILL.md",
@@ -207,8 +207,8 @@
     },
     {
       "source": "skills/principle-prove-it-works/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-redesign-from-first-principles/SKILL.md",
@@ -217,13 +217,13 @@
     },
     {
       "source": "skills/principle-separate-before-serializing-shared-state/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-sequence-verifiable-units/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-subtract-before-you-add/SKILL.md",
@@ -232,38 +232,38 @@
     },
     {
       "source": "skills/principle-test-behavior-not-implementation/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/principle-type-system-discipline/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/recall/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/reflect/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/setup-pstack/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/sharpen/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/show-me-your-work/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/statechart/SKILL.md",
@@ -272,8 +272,8 @@
     },
     {
       "source": "skills/swarm/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/tdd/SKILL.md",
@@ -282,13 +282,13 @@
     },
     {
       "source": "skills/teach/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/technical-writing/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/typescript-best-practices/SKILL.md",
@@ -297,13 +297,13 @@
     },
     {
       "source": "skills/unslop/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     },
     {
       "source": "skills/why/SKILL.md",
-      "codex": "review-required",
-      "pi": "review-required"
+      "codex": "adapted",
+      "pi": "adapted"
     }
   ]
 }

@@ -34,7 +34,7 @@ jobs:
         working-directory: codex/skills/poteto-mode/scripts
         run: |
           bun install --frozen-lockfile --ignore-scripts
-          bun test watch-pr check-plan.test.ts
+          bun test watch-pr
           bun run typecheck
       - name: Install statechart test dependencies
         run: npm install --prefix codex/skills/statechart/scripts --no-save --no-package-lock --ignore-scripts --no-audit --no-fund
