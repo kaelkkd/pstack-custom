@@ -16,6 +16,8 @@ Read this adapter once per session before following a bundled pstack skill or ag
 
 `pstack_task` accepts a single `agent` and `task`, or an array of tasks for parallel delegation. It launches isolated Pi subprocesses and inherits the active model and thinking level. `readonly: true` maps to Pi's read-only tool allowlist. `environment: "cloud"` has no package-level equivalent; use a worktree if the task needs filesystem isolation. `run_in_background`, `resume`, `cloud_base_branch`, and `file_attachments` are coordinator intent, not Pi tool fields. Pass paths in the task brief and disclose unsupported behavior.
 
+The worker kickoff file `skills/poteto-mode/worker.md` must be read with this adapter. It does not grant permission beyond the operator’s instructions. Worker profiles still apply when inheriting the parent model; there is no forced Opus default in this port. Ignore upstream `# defaults` migration notices: the host preference file has its own setup flow.
+
 ## Models and setup-pstack
 
 Ignore model slugs in upstream pstack. The default is the active Pi model and thinking level. Only select a different model after verifying it is configured in the current Pi installation. `auto` and `inherit-parent` both inherit the active session. `setup-pstack` may write explicit preferences to `~/.pi/agent/pstack-models.md`, then read that file when needed. It must not write Cursor `.mdc` rules or assume upstream model names are installed.

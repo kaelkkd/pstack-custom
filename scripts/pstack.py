@@ -79,8 +79,16 @@ def render(path: str, data: bytes, platform: str) -> bytes:
             text = text.replace("../../docs/harness/claude-code.md", "../../docs/adapter.md")
             text = "\n".join(line for line in text.split("\n") if "../make-bot-ui/SKILL.md" not in line)
         return insert_after_frontmatter(text, ADAPTER_LINE.format(platform=platform)).encode("utf-8")
+    if path == "skills/poteto-mode/worker.md":
+        return (
+            "> Read the platform adapter at `../../docs/adapter.md` relative to this file. "
+            "Its mappings and the operator’s explicit permissions take precedence over the rules below. "
+            "Ask for missing decisions when needed; do not infer approval from silence.\n\n"
+            + data.decode("utf-8")
+        ).encode("utf-8")
     if path.startswith("agents/") and path.endswith(".md"):
         text = data.decode("utf-8").replace("\r\n", "\n")
+        text = re.sub(r"^model:.*\n", "", text, flags=re.MULTILINE)
         return insert_after_frontmatter(text, AGENT_LINE.format(platform=platform)).encode("utf-8")
     if path.startswith("docs/guide/") and path.endswith(".md"):
         text = data.decode("utf-8").replace("\r\n", "\n")

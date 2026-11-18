@@ -16,6 +16,8 @@ This file is part of the Codex port. Read it once before following any bundled p
 
 `subagent_type: generalPurpose` means a normal Codex subagent. A request for `readonly: true` means a read-only brief and read-only tools if available. Verify the checkout is unchanged afterward. `environment: "cloud"` means an isolated worktree or task when the host supports one; otherwise use an isolated local worktree. `run_in_background`, `resume`, `cloud_base_branch`, and `file_attachments` are instructions to the coordinator, not literal Codex tool arguments. Map them to the current tool schema, or state when a requested behavior is unavailable.
 
+The worker kickoff file `skills/poteto-mode/worker.md` must be read with this adapter. It does not grant permission beyond the operator’s instructions. Worker profiles still apply when inheriting the parent model; there is no forced Opus default in this port. Ignore upstream `# defaults` migration notices: the host preference file has its own setup flow.
+
 ## Models and setup-pstack
 
 Ignore hard-coded Cursor, Claude, Grok, and GPT model slugs in pstack. Use the active Codex model and reasoning setting by default, including for delegates. If the current Codex session exposes explicit model selection, only choose a model that the session reports as available. `auto` and `inherit-parent` both mean to inherit the active model. `setup-pstack` may record *preferences* in a local `pstack-models.md` file; it must not write Cursor `.mdc` rules or assume a model catalog from the upstream text. Treat the upstream budget labels as user preferences, not as proof that an effort level exists.
