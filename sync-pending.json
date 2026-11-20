@@ -1,3 +1,36 @@
 {
-  "items": []
+  "items": [
+    "codex: merge conflict skills/setup-pstack/SKILL.md",
+    "codex: merge conflict skills/statechart/scripts/frontends/dot.ts",
+    "codex: merge conflict skills/statechart/scripts/run.ts",
+    "codex: merge conflict skills/statechart/scripts/statechart.ts",
+    "codex: merge conflict skills/statechart/scripts/test/messages.test.ts",
+    "codex: new skills/statechart/scripts/janitor.ts",
+    "codex: new skills/statechart/scripts/kill.ts",
+    "codex: semantic review skills/arena/SKILL.md",
+    "codex: semantic review skills/poteto-mode/SKILL.md",
+    "codex: semantic review skills/setup-pstack/SKILL.md",
+    "codex: semantic review skills/statechart/SKILL.md",
+    "codex: semantic review skills/statechart/scripts/frontends/dot.ts",
+    "codex: semantic review skills/statechart/scripts/run.ts",
+    "codex: semantic review skills/statechart/scripts/statechart.ts",
+    "codex: semantic review skills/statechart/scripts/test/cli.test.ts",
+    "codex: semantic review skills/statechart/scripts/test/messages.test.ts",
+    "pi: merge conflict skills/setup-pstack/SKILL.md",
+    "pi: merge conflict skills/statechart/scripts/frontends/dot.ts",
+    "pi: merge conflict skills/statechart/scripts/run.ts",
+    "pi: merge conflict skills/statechart/scripts/statechart.ts",
+    "pi: merge conflict skills/statechart/scripts/test/messages.test.ts",
+    "pi: new skills/statechart/scripts/janitor.ts",
+    "pi: new skills/statechart/scripts/kill.ts",
+    "pi: semantic review skills/arena/SKILL.md",
+    "pi: semantic review skills/poteto-mode/SKILL.md",
+    "pi: semantic review skills/setup-pstack/SKILL.md",
+    "pi: semantic review skills/statechart/SKILL.md",
+    "pi: semantic review skills/statechart/scripts/frontends/dot.ts",
+    "pi: semantic review skills/statechart/scripts/run.ts",
+    "pi: semantic review skills/statechart/scripts/statechart.ts",
+    "pi: semantic review skills/statechart/scripts/test/cli.test.ts",
+    "pi: semantic review skills/statechart/scripts/test/messages.test.ts"
+  ]
 }

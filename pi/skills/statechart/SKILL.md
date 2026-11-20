@@ -18,7 +18,7 @@ Work in a scratch folder outside the repo. Write a TLA+ spec and its config. The
 node --disable-warning=ExperimentalWarning "<skill dir>/scripts/statechart.ts" SPEC.tla [--config FILE] [--view FILE] [--out DIR]
 ```
 
-Use Node.js 22.18 or later in the 22.x line, or Node.js 23.6 or later. The command works on Windows, macOS, and Linux.
+Use Node.js 22.18 or later in the 22.x line, or Node.js 23.6 or later. The command works on Windows, macOS, and Linux. `scripts/statechart` is a POSIX shell script that picks one. On native Windows, run `node --disable-warning=ExperimentalWarning <skill dir>/scripts/statechart.ts` with Node 22.18 to 22.x, or Node 23.6 or later.
 
 The first run installs TLC and Java with mise and needs the network.
 
