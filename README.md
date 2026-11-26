@@ -1,8 +1,8 @@
-# pstack for Codex and Pi
+# pstack for Codex, Pi, and OpenCode
 
 Independent ports of [Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack). This repository contains the `pstack/` subtree only; it is not a fork of the Cursor plugins monorepo. The original MIT license and copyright notice are preserved in [LICENSE](LICENSE).
 
-The source snapshot is in `upstream/pstack/`. `upstream-lock.json` records the upstream commit and the Git tree hash for that directory. `compatibility.json` maps every upstream skill and agent profile to both ports, with explicit exclusions. The port keeps upstream English text and adds an adapter that translates harness-specific instructions.
+The source snapshot is in `upstream/pstack/`. `upstream-lock.json` records the upstream commit and the Git tree hash for that directory. `compatibility.json` maps every upstream skill and agent profile to the three ports, with explicit exclusions. Each port keeps upstream English text and adds host-specific integration through its adapter.
 
 ## Install
 
@@ -18,9 +18,13 @@ Install from this checkout with `pi install ./`, or from GitHub with `pi install
 
 Read [the Pi adapter](pi/docs/adapter.md) before using the upstream prose. Delegation inherits the active Pi model. The package does not configure paid providers or credentials.
 
+### OpenCode
+
+Clone this repository and add the absolute paths to `opencode/skills` and `opencode/docs/adapter.md` to the global `skills` and `instructions` arrays in `~/.config/opencode/opencode.json`. See [the OpenCode install guide](opencode/README.md) for the config snippet. The OpenCode skill files are byte-for-byte copies of upstream; the adapter is loaded as persistent instructions so it can explain skill invocation and coordination without rewriting the skills. Named pstack agent profiles are available in `opencode/agents/` and can be copied into OpenCode's agent directory when needed.
+
 ## Compatibility
 
-Both ports include 57 upstream skills and two agent profiles. `make-bot-ui` is excluded because its only workflow requires Cursor Automation routines, Cursor secret requests, and Cursor webhooks. The dormant `benny` automation pack remains in the source snapshot but is excluded from both installed packages. Optional steps invoking Bugbot, Cursor cloud dashboards, or skills from the separate `cursor-team-kit` plugin are mapped or reported unavailable by the adapters. No external service is installed implicitly.
+The Codex and Pi ports include the adapted upstream skills and two agent profiles. OpenCode includes the supported skills unchanged and provides adapted agent profiles. `make-bot-ui` is excluded because its only workflow requires Cursor Automation routines, Cursor secret requests, and Cursor webhooks. The dormant `benny` automation pack remains in the source snapshot but is excluded from all installed packages. Optional steps invoking Bugbot, Cursor cloud dashboards, or skills from the separate `cursor-team-kit` plugin are mapped or reported unavailable by the adapters. No external service is installed implicitly.
 
 The adapters are interpretation layers, not claims that every upstream workflow can run unchanged. Review source changes before merging a sync PR, especially agent and model instructions.
 

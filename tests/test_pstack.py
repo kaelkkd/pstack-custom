@@ -32,6 +32,7 @@ class SyncTests(unittest.TestCase):
         for platform in pstack.TARGETS:
             self.write(self.root / platform / "docs" / "adapter.md", "adapter\n")
             self.write(self.root / platform / "extensions" / "pstack-task.js", "// fixture\n")
+        self.write(self.root / "opencode" / "README.md", "OpenCode install instructions\n")
         self.write(self.root / "codex" / ".codex-plugin" / "plugin.json", json.dumps({"skills": "./skills/"}))
         self.write(self.root / "package.json", json.dumps({"pi": {"skills": ["./pi/skills"], "extensions": ["./pi/extensions/pstack-task.js"]}}))
         self.write(self.root / ".agents" / "plugins" / "marketplace.json", json.dumps({"plugins": [{"source": {"path": "./codex"}}]}))
@@ -63,10 +64,19 @@ class SyncTests(unittest.TestCase):
             agent = pstack.render("agents/poteto-agent.md", b"---\nname: poteto-agent\nmodel: cursor-only\n---\nBody\n", platform).decode()
             self.assertNotIn("model: cursor-only", agent)
             self.assertIn("adapter", agent)
+            if platform == "opencode":
+                self.assertIn("mode: subagent", agent)
             worker = pstack.render("skills/poteto-mode/worker.md", b"Worker rules\n", platform).decode()
-            self.assertIn("../../docs/adapter.md", worker)
-            self.assertIn("explicit permissions take precedence", worker)
+            if platform == "opencode":
+                self.assertEqual(worker, "Worker rules\n")
+            else:
+                self.assertIn("../../docs/adapter.md", worker)
+                self.assertIn("explicit permissions take precedence", worker)
             self.assertIn("Worker rules", worker)
+
+    def test_opencode_skill_files_are_unmodified(self):
+        source = b"---\nname: example\ndescription: Test\n---\n\nUse /other.\n"
+        self.assertEqual(pstack.render("skills/example/SKILL.md", source, "opencode"), source)
 
     def test_unrelated_commit_does_not_update(self):
         source = self.new_source()
