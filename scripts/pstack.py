@@ -19,7 +19,7 @@ UPSTREAM = ROOT / "upstream" / "pstack"
 LOCK = ROOT / "upstream-lock.json"
 MATRIX = ROOT / "compatibility.json"
 PENDING = ROOT / "sync-pending.json"
-TARGETS = ("codex", "pi")
+TARGETS = ("codex", "pi", "opencode")
 COPIED_ROOTS = ("skills", "agents", "docs/guide")
 EXCLUDED_SKILLS = {
     "make-bot-ui": "requires Cursor Automation routines, SendToUser secret requests, and Cursor webhooks",
@@ -66,6 +66,10 @@ def insert_after_frontmatter(source: str, line: str) -> str:
 
 
 def render(path: str, data: bytes, platform: str) -> bytes:
+    if platform == "opencode" and path.startswith("skills/"):
+        # OpenCode receives the complete upstream skill tree unchanged; the
+        # adapter is loaded through OpenCode's global `instructions` setting.
+        return data
     if path.startswith("skills/") and path.endswith("/SKILL.md"):
         text = data.decode("utf-8").replace("\r\n", "\n")
         if platform == "codex" and path in {"skills/statechart/SKILL.md", "skills/ketchup-video/SKILL.md"}:
@@ -89,6 +93,16 @@ def render(path: str, data: bytes, platform: str) -> bytes:
     if path.startswith("agents/") and path.endswith(".md"):
         text = data.decode("utf-8").replace("\r\n", "\n")
         text = re.sub(r"^model:.*\n", "", text, flags=re.MULTILINE)
+        if platform == "opencode":
+            if re.search(r"^is_background:.*\n", text, flags=re.MULTILINE):
+                text = re.sub(r"^is_background:.*\n", "mode: subagent\n", text, flags=re.MULTILINE)
+            elif not re.search(r"^mode:", text, flags=re.MULTILINE):
+                text = text.replace("\n---\n", "\nmode: subagent\n---\n", 1)
+        if platform == "opencode":
+            return insert_after_frontmatter(
+                text,
+                "The OpenCode adapter is loaded through the global instructions setting and applies to this profile.",
+            ).encode("utf-8")
         return insert_after_frontmatter(text, AGENT_LINE.format(platform=platform)).encode("utf-8")
     if path.startswith("docs/guide/") and path.endswith(".md"):
         text = data.decode("utf-8").replace("\r\n", "\n")
@@ -104,7 +118,7 @@ def render(path: str, data: bytes, platform: str) -> bytes:
                 "[`/make-bot-ui`](https://github.com/cursor/plugins/blob/main/pstack/skills/make-bot-ui/SKILL.md) (Cursor-only; excluded from this port)",
             )
         return (
-            f"> {platform.title()} port: read [the platform adapter](../adapter.md) for tool and path mappings.\n\n"
+            f"> { {'codex': 'Codex', 'pi': 'Pi', 'opencode': 'OpenCode'}[platform] } port: read [the platform adapter](../adapter.md) for tool and path mappings.\n\n"
             + text
         ).encode("utf-8")
     return data
@@ -128,15 +142,16 @@ def copy_initial() -> None:
             name = Path(path).parent.name
             if name in EXCLUDED_SKILLS:
                 reason = EXCLUDED_SKILLS[name]
-                items.append({"source": path, "codex": f"excluded: {reason}", "pi": f"excluded: {reason}"})
+                items.append({"source": path, **{platform: f"excluded: {reason}" for platform in TARGETS}})
             else:
-                items.append({"source": path, "codex": "adapted", "pi": "adapted"})
+                items.append({"source": path, **{platform: "adapted" for platform in TARGETS}})
         elif path.startswith("agents/") and path.endswith(".md"):
-            items.append({"source": path, "codex": "profile", "pi": "profile"})
+            items.append({"source": path, **{platform: "profile" for platform in TARGETS}})
     items.append({
         "source": "automations/benny/",
         "codex": "excluded: Cursor Automations and Slack integration are not part of the Codex plugin runtime",
         "pi": "excluded: Cursor Automations and Slack integration are not part of the Pi package runtime",
+        "opencode": "excluded: Cursor Automations and Slack integration are not part of the OpenCode skill runtime",
     })
     MATRIX.write_text(json.dumps({"entries": items}, indent=2) + "\n", encoding="utf-8")
     print(f"Rendered {len(items) - 1} skills and agents for Codex and Pi")
@@ -209,7 +224,7 @@ def synchronize(source_dir: Path, commit: str, tree: str, report_path: Path) -> 
                     by_source[path][platform] = "review-required"
         if ((path.startswith("skills/") and path.endswith("/SKILL.md"))
                 or (path.startswith("agents/") and path.endswith(".md"))) and path not in by_source:
-            item = {"source": path, "codex": "review-required", "pi": "review-required"}
+            item = {"source": path, **{platform: "review-required" for platform in TARGETS}}
             matrix["entries"].append(item)
             by_source[path] = item
     for path, src in old.items():
@@ -263,6 +278,15 @@ def check(allow_pending: bool = False) -> int:
         problems.append(f"matrix mismatch: missing={sorted(expected - set(entries))}, extra={sorted(set(entries) - expected)}")
     for platform in TARGETS:
         package = ROOT / platform
+        if platform == "opencode":
+            for path, src in source.items():
+                if supported(path) and path.startswith("skills/"):
+                    skill_path = f"{Path(path).parent.as_posix()}/SKILL.md"
+                    if entries.get(skill_path, {}).get(platform) != "adapted":
+                        continue
+                    target = package / path
+                    if not target.is_file() or target.read_bytes() != src.read_bytes():
+                        problems.append(f"OpenCode skill bundle differs from upstream: {path}")
         for path in expected - {"automations/benny/"}:
             item = entries.get(path, {})
             status = item.get(platform, "")
@@ -289,10 +313,14 @@ def check(allow_pending: bool = False) -> int:
                 name = Path(path).parent.name
                 if not SKILL_NAME.fullmatch(name) or f"name: {name}" not in text.split("---", 2)[1]:
                     problems.append(f"invalid skill frontmatter {platform}/{path}")
-                if "docs/adapter.md" not in text:
+                if platform == "opencode" and status == "adapted" and target.read_bytes() != source[path].read_bytes():
+                    problems.append(f"OpenCode skill differs from upstream: {path}")
+                if platform != "opencode" and "docs/adapter.md" not in text:
                     problems.append(f"adapter missing from {platform}/{path}")
         if not (package / "docs" / "adapter.md").is_file():
             problems.append(f"missing {platform} adapter")
+        if platform == "opencode" and not (package / "README.md").is_file():
+            problems.append("missing OpenCode install instructions")
         if (package / "LICENSE").read_bytes() != (UPSTREAM / "LICENSE").read_bytes():
             problems.append(f"license mismatch in {platform}")
         for markdown in files(package).values():
@@ -307,6 +335,11 @@ def check(allow_pending: bool = False) -> int:
                     problems.append(f"link escapes installed package in {markdown.relative_to(ROOT)}: {href}")
                     continue
                 if not target.exists():
+                    if (platform == "opencode" and markdown.relative_to(ROOT).as_posix() == "opencode/skills/poteto-help/SKILL.md"
+                            and href == "../make-bot-ui/SKILL.md"):
+                        # Keep the upstream skill byte-for-byte intact; this points
+                        # to an intentionally excluded Cursor-only skill.
+                        continue
                     try:
                         relative_target = target.relative_to(package.resolve()).as_posix()
                     except ValueError:
